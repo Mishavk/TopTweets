@@ -1,0 +1,8 @@
+<!--
+ - Created by mkachan on 07.06.2019.
+ -->
+
+<aura:event type="APPLICATION" description="SetTextPost">
+    <aura:attribute name="id" type="Id"/>
+    <aura:attribute name="textPost" type="Object"/>
+</aura:event>

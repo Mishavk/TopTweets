@@ -1,0 +1,57 @@
+<!--
+ - Created by mkachan on 07.06.2019.
+ -->
+
+<aura:component description="Top_Tweets" controller="GetAuthorsController"  implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" access="global">
+    <aura:attribute name="authors" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="textPost" type="c:SetTextPost" />
+    <aura:attribute name="errors" type="Object" />
+
+    <lightning:card title="Top Tweets">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th scope="col">
+                    <div class="slds-truncate" title="Name">Account</div>
+                </th>
+                <th  scope="col">
+                    <div class="slds-truncate" title="Title">Likes</div>
+                </th>
+                <th  scope="col">
+                    <div class="slds-truncate" title="Number of post">Number post </div>
+                </th>
+                <th  scope="col">
+                    <div class="slds-truncate" title="Delete">Delete</div>
+                </th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <aura:iteration items="{!v.authors}" var="author" >
+
+                <tr onclick="{!c.onclick}" id="{!author.Name}" title="{!author.Post__r.Text__c}" about="{!author.Name}" >
+
+                    <td><div class="slds-truncate" title="{!author.Name}">{!author.Name}</div></td>
+                    <td><div class="slds-truncate" title="{!author.Post__r.Likes__c}">{!author.Post__r.Likes__c}</div></td>
+                    <td><div class="slds-truncate" title="{!author.Post__r.Number_of_post__c}">{!author.Post__r.Number_of_post__c}</div></td>
+                    <td>
+
+                            <!-- Use a Lightning Base Component To display an icon next to the label -->
+                            <lightning:button
+                                    label="Delete"
+                                    iconName="utility:delete"
+                                    iconPosition="left"
+                                    type="submit"
+                                    value="{!author.Post__c}"
+                                    onclick="{!c.deleteAuthor}"
+                            />
+                    </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
+        </table>
+    </lightning:card>
+
+</aura:component>

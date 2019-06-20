@@ -1,0 +1,20 @@
+<!--
+ - Created by mkachan on 07.06.2019.
+ -->
+
+<aura:component description="NewAuthor"
+                controller="NewRecordAuthorController"
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable"
+                access="global">
+    <aura:attribute name="errors" type="Object" />
+
+
+    <lightning:card iconName="standard:contact" title="Author" >
+        <div class="slds-p-horizontal--small">
+            <lightning:input aura:id="inputName" name="inputName" label="Enter profile name:"  />
+            <br/>
+            <lightning:button iconName="utility:save" label="Save" type="submit" onclick="{!c.handleClick}"/>
+        </div>
+    </lightning:card>
+
+</aura:component>
